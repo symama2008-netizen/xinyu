@@ -1,0 +1,34 @@
+{
+  "id": "bakery",
+  "name": "面包房",
+  "room": {
+    "widthRatio": 0.65,
+    "heightRatio": 0.7
+  },
+  "background": {
+    "wall": "#FFF8DC",
+    "floor": "#DEB887",
+    "door": {
+      "x": 390,
+      "y": 504,
+      "w": 51,
+      "h": 38,
+      "color": "#FFD54F"
+    }
+  },
+  "furniture": [
+    { "id": "glass_counter", "name": "玻璃柜台", "x": 80, "y": 280, "w": 240, "h": 60, "color": "#8B4513", "glassColor": "rgba(200,230,255,0.5)", "sortable": true },
+    { "id": "bread_shelf", "name": "面包架", "x": 500, "y": 180, "w": 140, "h": 100, "color": "#8B4513", "sortable": true },
+    { "id": "oven", "name": "烤箱", "x": 680, "y": 320, "w": 110, "h": 90, "color": "#4A4A4A", "doorColor": "#2F2F2F", "sortable": true },
+    { "id": "round_table", "name": "小圆桌", "x": 360, "y": 380, "w": 90, "h": 50, "color": "#8B4513", "sortable": true },
+    { "id": "stool", "name": "凳子", "x": 370, "y": 430, "w": 30, "h": 25, "color": "#A0522D", "sortable": true }
+  ],
+  "decorations": [
+    { "id": "display_window", "name": "橱窗", "x": 40, "y": 40, "w": 120, "h": 90, "color": "#87CEEB", "frameColor": "#FFF", "sortable": false },
+    { "id": "bakery_sign", "name": "面包房招牌", "x": 350, "y": 45, "w": 130, "h": 30, "color": "#8B4513", "textColor": "#FFD54F", "sortable": false },
+    { "id": "wall_clock", "name": "挂钟", "x": 700, "y": 50, "w": 45, "h": 45, "color": "#8B4513", "sortable": false }
+  ],
+  "items": [
+    { "id": "ceramic_cup", "name": "陶瓷杯", "icon": "☕", "x": 395, "y": 335, "w": 20, "h": 20, "interaction": "collect", "glow": true, "unlockDay": 1, "discoveryId": "cup_found" }
+  ]
+}

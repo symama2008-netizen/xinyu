@@ -1,0 +1,78 @@
+{
+  "npcId": "pangshu",
+  "name": "胖叔",
+  "dialogueTree": [
+    {
+      "id": "pangshu_day2_first",
+      "day": 2,
+      "location": "diner",
+      "condition": { "flag": null },
+      "lines": [
+        { "text": "林晚！你外婆天天念叨你。来来来，坐。外面凉了。", "speaker": "pangshu" }
+      ],
+      "setFlag": "metPangshu"
+    },
+    {
+      "id": "pangshu_day2_note",
+      "day": 2,
+      "location": "diner",
+      "condition": { "flags": { "metPangshu": true } },
+      "lines": [
+        { "text": "你看这张便签。你六岁那年你外婆写的。", "speaker": "pangshu" },
+        { "text": "『今天做了一个决定。不管多难，都要好好把晚晚带大。——芳华』", "speaker": "pangshu" },
+        { "text": "你外公来接她，看了一眼便签说——什么叫你一个人？我不算人吗？你外婆白他一眼，但把便签重新贴好，在旁边画了个小人，写『算』。", "speaker": "pangshu" }
+      ],
+      "discovery": "pangshu_note"
+    },
+    {
+      "id": "pangshu_day2_recipe",
+      "day": 2,
+      "location": "diner",
+      "condition": { "flags": { "metPangshu": true } },
+      "lines": [
+        { "text": "你外婆跟我说过一句话，我记到现在。她说——食物能接纳所有说不出口的愁。嚼碎了咽下去，就有了力气。", "speaker": "pangshu" },
+        { "text": "这个给你。你外婆当年手写的面包配方。一直放我这，说怕自己忘了。我说你天天做怎么会忘，她说——万一呢。她就是怕哪天不能做给你吃了。", "speaker": "pangshu" }
+      ],
+      "options": [
+        {
+          "text": "胖叔，外婆她那时候……很难吧。",
+          "emotion": { "calm": 5 },
+          "lines": [
+            { "text": "难不难的，都过去了。你外婆现在不是挺好的？有人陪了，话也多了。", "speaker": "pangshu" }
+          ]
+        },
+        {
+          "text": "我不知道自己能做什么。",
+          "emotion": { "brave": 5 },
+          "lines": [
+            { "text": "不知道该做什么的时候，就先把自己喂饱。饱了，心就不慌了。有什么事，明天再说。这句话也是你外婆教我的。", "speaker": "pangshu" }
+          ]
+        },
+        {
+          "text": "（慢慢喝汤，不说话）",
+          "emotion": { "calm": 5 },
+          "lines": [
+            { "text": "胖叔不说话，把第二碗面推过来。笑了笑。", "speaker": "narrator" }
+          ]
+        }
+      ],
+      "setItem": "bread_recipe"
+    },
+    {
+      "id": "pangshu_day3",
+      "day": 3,
+      "location": "diner",
+      "lines": [
+        { "text": "要走了？汤还是热的。想喝了再来。", "speaker": "pangshu" }
+      ]
+    },
+    {
+      "id": "pangshu_generic",
+      "day": 0,
+      "location": "diner",
+      "lines": [
+        { "text": "来碗汤？今天的是鱼汤，你外婆教的配方。", "speaker": "pangshu" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "npcId": "chenbo",
+  "name": "陈伯",
+  "dialogueTree": [
+    {
+      "id": "chenbo_day1_first",
+      "day": 1,
+      "location": "bookstore",
+      "condition": { "flag": null },
+      "lines": [
+        { "text": "林家小晚？长这么大了。你外婆刚打电话来，说你回来了。", "speaker": "chenbo" }
+      ],
+      "setFlag": "metChenbo"
+    },
+    {
+      "id": "chenbo_day1_book",
+      "day": 1,
+      "location": "bookstore",
+      "condition": { "flags": { "metChenbo": true } },
+      "lines": [
+        { "text": "这本书你外婆借了快两年。不是没读完——是读了好几遍，舍不得还。她那时候刚把你接过来带，手忙脚乱的。", "speaker": "chenbo" },
+        { "text": "有一天抱着你来我这躲雨，你在她怀里睡着了，她单手翻书。我说你放下来吧，她说——不放了。放下来怕醒了。", "speaker": "chenbo" },
+        { "text": "后来她跟我说：读旧书就像遇到过去的自己。每一页折痕，都是那个年纪的她想说的话。现在我把它交给你。说不定哪一页，刚好是你现在需要的。", "speaker": "chenbo" }
+      ],
+      "options": [
+        {
+          "text": "我已经很久没读完一本书了。",
+          "emotion": { "calm": 3 },
+          "lines": [
+            { "text": "不急。你外婆也是读到第二遍才看进去的。", "speaker": "chenbo" }
+          ]
+        },
+        {
+          "text": "外婆她……年轻时是什么样的人？",
+          "emotion": { "calm": 5 },
+          "lines": [
+            { "text": "以前是个闷葫芦。心里有事不跟人说，就来这看书。有天突然跟我说——老陈，我发现不把话说出来，书也读不进去。", "speaker": "chenbo" },
+            { "text": "我问怎么了，她说今天跟晚晚聊天了。我说晚晚不是才四岁吗，聊什么？她说——聊什么都行。她听着就行了。", "speaker": "chenbo" },
+            { "text": "她说——活了半辈子，第一次有人听她说话。那个人是你。", "speaker": "chenbo" }
+          ]
+        },
+        {
+          "text": "谢谢陈伯。也许我该重新开始读书了。",
+          "emotion": { "brave": 5 },
+          "discovery": "chenbo_book",
+          "lines": [
+            { "text": "好。这本书送你了。你外婆说，书不怕旧，怕没人读。人也一样。", "speaker": "chenbo" }
+          ]
+        }
+      ],
+      "setItem": "nameless_book"
+    },
+    {
+      "id": "chenbo_day2",
+      "day": 2,
+      "location": "bookstore",
+      "lines": [
+        { "text": "书读得怎么样了？不急，慢慢来。你外婆当年也是读到第二遍才看进去的。", "speaker": "chenbo" }
+      ]
+    },
+    {
+      "id": "chenbo_day3",
+      "day": 3,
+      "location": "bookstore",
+      "lines": [
+        { "text": "要走了？书你要是喜欢，就带走。你外婆会高兴的。", "speaker": "chenbo" }
+      ]
+    },
+    {
+      "id": "chenbo_generic",
+      "day": 0,
+      "location": "bookstore",
+      "lines": [
+        { "text": "今天想找什么书？我这虽然旧，但什么都有。", "speaker": "chenbo" }
+      ]
+    }
+  ]
+}

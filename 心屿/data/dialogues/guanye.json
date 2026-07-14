@@ -1,0 +1,80 @@
+{
+  "npcId": "guanye",
+  "name": "关爷",
+  "dialogueTree": [
+    {
+      "id": "guanye_day2_first",
+      "day": 2,
+      "location": "repairshop",
+      "condition": { "flag": null },
+      "lines": [
+        { "text": "把门带上。灰尘别跑进来。", "speaker": "guanye" }
+      ],
+      "setFlag": "metGuanye"
+    },
+    {
+      "id": "guanye_day2_box",
+      "day": 2,
+      "location": "repairshop",
+      "condition": { "flags": { "metGuanye": true } },
+      "lines": [
+        { "text": "你和你外婆年轻时，眼睛真像。她以前也爱站在这看我修东西。一聊就是一下午。有时候什么也不说，就坐着。我知道她心里有事，但不问——问了也不说。你外婆这个人，什么都自己扛。", "speaker": "guanye" },
+        { "text": "你外婆的八音盒。三十年前她来我这，说想修好它。那时候她一个人带着你妈，没钱。我说不急，先放这。后来她每隔一阵就来，帮我打打下手，跟我说说话。说了好几年。", "speaker": "guanye" },
+        { "text": "这首歌是外公当年追她时唱的。现在外公就在镇上，她天天听，还嫌外公唱得跑调。", "speaker": "guanye" }
+      ]
+    },
+    {
+      "id": "guanye_day2_watch",
+      "day": 2,
+      "location": "repairshop",
+      "condition": { "flags": { "metGuanye": true } },
+      "lines": [
+        { "text": "这个怀表也是她的。她那时候说，修好八音盒就把怀表给我当修理费。我说不值，她不听。", "speaker": "guanye" },
+        { "text": "后来我想明白了——她就是想找个人说说话。一个人带孩子，太难了。说说话，能好受一点。", "speaker": "guanye" },
+        { "text": "现在不用了——家里有人听她说话了。", "speaker": "guanye" }
+      ],
+      "options": [
+        {
+          "text": "她从来不说这些……",
+          "emotion": { "calm": 5 },
+          "lines": [
+            { "text": "她现在不是说了嘛。写在日记里了。你慢慢看。", "speaker": "guanye" }
+          ]
+        },
+        {
+          "text": "关爷爷，外婆她那时候怎么熬过来的？",
+          "emotion": { "calm": 3, "brave": 5 },
+          "lines": [
+            { "text": "怎么熬？熬着熬着就过来了。你外婆说——人这一辈子就像修东西。有些零件坏了换新的，有些修不好就带着它走。带着带着就习惯了。", "speaker": "guanye" },
+            { "text": "后来她又加了一句——现在不用习惯了，有人帮我一起疼了。她说的那个人，是你。", "speaker": "guanye" }
+          ]
+        },
+        {
+          "text": "（沉默地接过怀表）",
+          "emotion": { "brave": 5 },
+          "discovery": "guanye_watch",
+          "lines": [
+            { "text": "拿好。你外婆说，表不走了没关系，人还在走就行。", "speaker": "guanye" }
+          ]
+        }
+      ],
+      "setItem": "pocket_watch"
+    },
+    {
+      "id": "guanye_day3",
+      "day": 3,
+      "location": "repairshop",
+      "lines": [
+        { "text": "八音盒修好了，你外婆天天听。她说——这就是当年追我的歌。我说是，你还记得。", "speaker": "guanye" }
+      ]
+    },
+    {
+      "id": "guanye_generic",
+      "day": 0,
+      "location": "repairshop",
+      "lines": [
+        { "text": "有什么要修的？拿来。", "speaker": "guanye" }
+      ]
+    }
+  ]
+}

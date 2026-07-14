@@ -1,0 +1,41 @@
+{
+  "id": "oldhouse",
+  "name": "老房子",
+  "room": {
+    "widthRatio": 0.65,
+    "heightRatio": 0.7
+  },
+  "background": {
+    "wall": "#FDF5E6",
+    "floor": "#D2691E",
+    "door": {
+      "x": 390,
+      "y": 504,
+      "w": 51,
+      "h": 38,
+      "color": "#FFD54F"
+    }
+  },
+  "furniture": [
+    { "id": "desk", "name": "书桌", "x": 560, "y": 220, "w": 100, "h": 35, "color": "#8B4513", "sortable": true },
+    { "id": "wardrobe", "name": "衣柜", "x": 540, "y": 50, "w": 45, "h": 100, "color": "#8B6B4A", "sortable": true },
+    { "id": "sofa", "name": "沙发", "x": 60, "y": 380, "w": 120, "h": 50, "color": "#8B0000", "sortable": true },
+    { "id": "tea_table", "name": "茶几", "x": 260, "y": 370, "w": 80, "h": 30, "color": "#8B4513", "sortable": true },
+    { "id": "potted_plant", "name": "盆栽", "x": 40, "y": 420, "w": 20, "h": 25, "potColor": "#8B4513", "leafColor": "#228B22", "sortable": true },
+    { "id": "partition_wall", "name": "隔断屏风", "x": 250, "y": 200, "w": 12, "h": 100, "color": "#D2B48C", "sortable": true },
+    { "id": "desk_lamp", "name": "台灯", "x": 630, "y": 210, "w": 20, "h": 25, "color": "#FFD700", "sortable": true }
+  ],
+  "decorations": [
+    { "id": "window", "name": "窗户", "x": 680, "y": 50, "w": 70, "h": 70, "color": "#87CEEB", "curtainColor": "#FFB6C1", "sortable": false },
+    { "id": "painting", "name": "墙上的画", "x": 40, "y": 80, "w": 100, "h": 65, "color": "#DEB887", "sortable": false },
+    { "id": "photo_frame", "name": "照片框", "x": 150, "y": 80, "w": 50, "h": 40, "color": "#8B4513", "sortable": false },
+    { "id": "house_sign", "name": "老房子", "x": 20, "y": 20, "w": 60, "h": 20, "color": "#8B4513", "sortable": false },
+    { "id": "clock", "name": "老式挂钟", "x": 600, "y": 5, "w": 40, "h": 45, "color": "#8B4513", "sortable": false }
+  ],
+  "items": [
+    { "id": "diary", "name": "外婆的日记本", "x": 575, "y": 195, "w": 45, "h": 18, "interaction": "read_diary", "glow": true },
+    { "id": "dried_flower", "name": "干花", "icon": "🌸", "x": 730, "y": 80, "w": 25, "h": 30, "interaction": "collect", "glow": true, "unlockDay": 2, "discoveryId": "flower_found" },
+    { "id": "waipo_button", "name": "外婆纽扣", "icon": "🔘", "x": 545, "y": 100, "w": 18, "h": 18, "interaction": "collect", "glow": true, "unlockDay": 1, "discoveryId": "button_found" },
+    { "id": "childhood_drawing", "name": "幼年涂鸦", "icon": "🎨", "x": 100, "y": 200, "w": 35, "h": 25, "interaction": "collect", "glow": true, "unlockDay": 1, "discoveryId": "drawing_found" }
+  ]
+}

@@ -1,0 +1,23 @@
+[
+  { "id": "N01", "trigger": "game_start", "text": "外婆的汤还是那个味道。吃完饭，她想出去走走。", "duration": 3000 },
+  { "id": "N02", "trigger": "enter_bakery", "text": "暖黄的灯光透过橱窗，能看见里面金黄色的面包。", "duration": 3000 },
+  { "id": "N03", "trigger": "fangjie_done", "text": "面包房的暖香好像能渗进心里。方姐已经开始揉下一炉面团了，哼着外婆教的调子。", "duration": 3000 },
+  { "id": "N04", "trigger": "leave_bakery", "text": "陈伯的旧书店好像也不远。外婆说，她年轻时在那里躲过雨。", "duration": 3000 },
+  { "id": "N05", "trigger": "enter_bookstore", "text": "墨绿色的窗框里，高至天花板的书架静静立着。空气中有旧纸和木头的气味。", "duration": 3000 },
+  { "id": "N06", "trigger": "chenbo_done", "text": "书店里的尘埃在光束中慢慢飘。陈伯已经踩着梯子去整理上层书架了。", "duration": 3000 },
+  { "id": "N07", "trigger": "first_diary", "text": "糖纸还在。外公剥了这么多年豆子，外婆留了这么多年糖纸。", "duration": 3000 },
+  { "id": "N08", "trigger": "evening_oldhouse", "text": "窗外的海面被夕阳染成了橘色。外婆在厨房里哼着老歌，外公在院子里收拾豆子筐。", "duration": 3000 },
+  { "id": "N09", "trigger": "day1_sleep", "text": "今天晚晚回来了。她去见了方姐，方姐说她长高了……老头子今晚多剥了一碗豆子，说晚晚爱吃。", "duration": 4000 },
+  { "id": "N10", "trigger": "day2_start", "text": "第二天的阳光好像比昨天暖一点。", "duration": 3000 },
+  { "id": "N11", "trigger": "enter_repairshop", "text": "铁皮屋顶上趴着几块锈迹。门口堆着齿轮，像老旧的拼图。", "duration": 3000 },
+  { "id": "N12", "trigger": "guanye_done", "text": "八音盒的旋律还在空气里飘着。关爷已经把放大镜推回额头上了。", "duration": 3000 },
+  { "id": "N13", "trigger": "leave_repairshop", "text": "外婆年轻时的照片还在怀表里。她以前也迷茫过——比我还迷茫。", "duration": 3000 },
+  { "id": "N14", "trigger": "near_diner", "text": "路边亮起了暖黄的灯笼。深夜食堂应该已经开门了。", "duration": 3000 },
+  { "id": "N15", "trigger": "pangshu_done", "text": "汤的热气模糊了窗户。墙上那张便签上，外公画的小人还在生气。", "duration": 3000 },
+  { "id": "N16", "trigger": "leave_diner", "text": "外婆说，情绪嚼碎了咽下去就有了力气。她以前一定嚼了很多。但现在不用了。", "duration": 3000 },
+  { "id": "N17", "trigger": "day2_sleep", "text": "晚晚这两天把小镇走了一遍。每个人都说她瘦了，我说没事，外婆喂得回来。", "duration": 4000 },
+  { "id": "N18", "trigger": "get_key", "text": "这把钥匙很旧，但很亮。像是被很多人握过。", "duration": 3000 },
+  { "id": "N19", "trigger": "enter_lighthouse", "text": "白色的塔身立在礁石上。塔顶的光，即使在白天也亮着。", "duration": 3000 },
+  { "id": "N20", "trigger": "laozhou_done", "text": "灯塔的光在头顶旋转。她想起外婆说的——人不是非得知道所有答案。知道下一步就行了。", "duration": 3000 },
+  { "id": "N21", "trigger": "help_laozhou", "text": "原来这么小的事，也能让人心里亮堂一下。", "duration": 3000 }
+]

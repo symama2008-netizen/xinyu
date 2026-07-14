@@ -1,0 +1,145 @@
+{
+  "npcId": "waipo",
+  "name": "外婆",
+  "dialogueTree": [
+    {
+      "id": "waipo_day1_arrive",
+      "day": 1,
+      "location": "oldhouse",
+      "condition": { "flag": null },
+      "lines": [
+        {
+          "text": "晚晚回来啦。我算着时间呢，汤刚炖好。路上累了吧？先把东西放下，洗手吃饭。",
+          "speaker": "waipo"
+        },
+        {
+          "text": "你小时候的东西外婆都收着呢。去屋里看看吧，好多年没回来了。",
+          "speaker": "waipo"
+        },
+        {
+          "text": "书桌那边有本旧日记，是你小时候我记的。有空翻翻看。",
+          "speaker": "waipo"
+        }
+      ],
+      "setFlag": "day1Arrived"
+    },
+    {
+      "id": "waipo_day1_evening",
+      "day": 1,
+      "location": "oldhouse",
+      "condition": { "timeOfDay": ["evening", "night"], "flags": { "metFangjie": true, "metChenbo": true } },
+      "lines": [
+        { "text": "回来啦？今天见了谁？", "speaker": "waipo" }
+      ],
+      "options": [
+        {
+          "text": "见了方姐和陈伯",
+          "emotion": { "calm": 3, "brave": 3 },
+          "lines": [
+            { "text": "方姐的面包好吃吧？她呀，一直记着你。陈伯那本书是你外婆年轻时最喜欢的——他念叨了好多年，说等你回来要给你。", "speaker": "waipo" }
+          ],
+          "next": "waipo_day1_evening_cont"
+        },
+        {
+          "text": "就在镇上走走",
+          "emotion": { "calm": 5, "brave": 5 },
+          "lines": [
+            { "text": "也好。慢慢走，小镇不大，但每条路都值得走。", "speaker": "waipo" }
+          ],
+          "next": "waipo_day1_evening_cont"
+        }
+      ]
+    },
+    {
+      "id": "waipo_day1_evening_cont",
+      "day": 1,
+      "location": "oldhouse",
+      "lines": [
+        { "text": "洗手吃饭吧。外公剥了一下午豆子，说给你做豆子汤。", "speaker": "waipo" }
+      ],
+      "setFlag": "day1EveningTalked"
+    },
+    {
+      "id": "waipo_day2_album",
+      "day": 2,
+      "location": "oldhouse",
+      "condition": { "flags": { "day1Completed": true } },
+      "lines": [
+        { "text": "你看这张照片——灯塔下面，老周、关爷、胖叔、方姐、陈伯，还有我们两个。", "speaker": "waipo" }
+      ],
+      "options": [
+        {
+          "text": "外婆年轻时候真好看",
+          "emotion": { "calm": 5, "brave": 5 },
+          "discovery": "waipo_album",
+          "lines": [
+            { "text": "这些人，都是外婆的灯塔。那些年，他们一人照一下，我就没迷路。", "speaker": "waipo" },
+            { "text": "后来——你来了。你往那一站，比灯塔还亮。外婆就不需要别的光了。", "speaker": "waipo" }
+          ]
+        },
+        {
+          "text": "这些人我都认识",
+          "emotion": { "calm": 3, "brave": 5 },
+          "lines": [
+            { "text": "他们都记得你。你小时候在这跑来跑去，他们看着你长大的。", "speaker": "waipo" }
+          ]
+        }
+      ],
+      "setFlag": "day2AlbumTalked"
+    },
+    {
+      "id": "waipo_day3_morning",
+      "day": 3,
+      "location": "oldhouse",
+      "lines": [
+        { "text": "灯塔的钥匙给你。老周说你应该上去看看。", "speaker": "waipo" }
+      ],
+      "options": [
+        {
+          "text": "外婆年轻时在上面想明白了很多事？",
+          "emotion": { "calm": 5, "brave": 5 },
+          "lines": [
+            { "text": "是啊。站在那往下看，海和天没有边界。人生也一样。", "speaker": "waipo" }
+          ],
+          "next": "waipo_day3_morning_cont"
+        },
+        {
+          "text": "谢谢外婆",
+          "emotion": { "calm": 3, "brave": 5 },
+          "lines": [
+            { "text": "去吧。外婆在家等你。", "speaker": "waipo" }
+          ],
+          "next": "waipo_day3_morning_cont"
+        }
+      ],
+      "setItem": "lighthouse_key",
+      "setFlag": "hasLighthouseKey",
+      "discovery": "lighthouse_key"
+    },
+    {
+      "id": "waipo_day3_morning_cont",
+      "day": 0,
+      "location": "oldhouse",
+      "condition": { "flags": { "hasLighthouseKey": true } },
+      "lines": [
+        { "text": "去吧。外婆在家等你。", "speaker": "waipo" }
+      ]
+    },
+    {
+      "id": "waipo_outdoor_fallback",
+      "day": 0,
+      "location": "outdoor",
+      "lines": [
+        { "text": "晚晚，进屋里坐。外头风大。", "speaker": "waipo" }
+      ]
+    },
+    {
+      "id": "waipo_generic",
+      "day": 0,
+      "location": "oldhouse",
+      "lines": [
+        { "text": "不急，坐一会儿，饭马上好。", "speaker": "waipo" }
+      ]
+    }
+  ]
+}

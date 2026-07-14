@@ -1,0 +1,14 @@
+[
+  { "id": "shell", "name": "贝壳", "unlockDay": 1, "discoveryId": "shell_found" },
+  { "id": "waipo_button", "name": "外婆纽扣", "unlockDay": 1, "discoveryId": "button_found" },
+  { "id": "childhood_drawing", "name": "幼年涂鸦", "unlockDay": 1, "discoveryId": "drawing_found" },
+  { "id": "ceramic_cup", "name": "陶瓷杯", "unlockDay": 1, "discoveryId": "cup_found" },
+  { "id": "bookmark", "name": "旧书签", "unlockDay": 1, "discoveryId": "bookmark_found" },
+  { "id": "sea_glass", "name": "海玻璃", "unlockDay": 2, "discoveryId": "sea_glass_found" },
+  { "id": "dried_flower", "name": "干花", "unlockDay": 2, "discoveryId": "flower_found" },
+  { "id": "stamp", "name": "邮票", "unlockDay": 2, "discoveryId": "stamp_found" },
+  { "id": "postcard", "name": "明信片", "unlockDay": 2, "discoveryId": "postcard_found" },
+  { "id": "windmill", "name": "小风车", "unlockDay": 2, "discoveryId": "windmill_found" },
+  { "id": "lighthouse_model", "name": "灯塔模型", "unlockDay": 3, "discoveryId": "lighthouse_model_found" },
+  { "id": "old_key", "name": "老钥匙", "unlockDay": 3, "discoveryId": "key_found" }
+]

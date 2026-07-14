@@ -1,0 +1,126 @@
+{
+  "width": 50,
+  "height": 32,
+  "tileSize": 32,
+  "terrain": [
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwgggggggggggggggggrggggggggggggghhhhhhhhhhh",
+    "wwwwwwwwrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg",
+    "wwwwwwwwgggggggggggggggggrgggggggggggggggggggggggg"
+  ],
+  "buildings": [
+    {
+      "id": "oldhouse",
+      "name": "老房子",
+      "x": 10, "y": 8, "w": 5, "h": 5,
+      "type": "oldhouse",
+      "color": "#C49A6C",
+      "entrance": { "x": 12.5, "y": 13 }
+    },
+    {
+      "id": "bakery",
+      "name": "面包房",
+      "x": 18, "y": 8, "w": 4, "h": 4,
+      "type": "bakery",
+      "color": "#E8966B",
+      "entrance": { "x": 20, "y": 12 }
+    },
+    {
+      "id": "bookstore",
+      "name": "无名书店",
+      "x": 27, "y": 8, "w": 4, "h": 4,
+      "type": "bookstore",
+      "color": "#7A7A7A",
+      "entrance": { "x": 29, "y": 12 }
+    },
+    {
+      "id": "lighthouse",
+      "name": "灯塔",
+      "x": 42, "y": 4, "w": 3, "h": 6,
+      "type": "lighthouse",
+      "color": "#ECEFF1",
+      "entrance": { "x": 43.5, "y": 10 },
+      "locked": true
+    },
+    {
+      "id": "diner",
+      "name": "深夜食堂",
+      "x": 10, "y": 19, "w": 4, "h": 4,
+      "type": "diner",
+      "color": "#8B6B4A",
+      "entrance": { "x": 12, "y": 23 },
+      "locked": true
+    },
+    {
+      "id": "repairshop",
+      "name": "修理铺",
+      "x": 27, "y": 19, "w": 4, "h": 4,
+      "type": "repairshop",
+      "color": "#B0BEC5",
+      "entrance": { "x": 29, "y": 23 },
+      "locked": true
+    }
+  ],
+  "items": [
+    { "id": "shell", "name": "贝壳", "icon": "🐚", "x": 8, "y": 16, "type": "collectible", "unlockDay": 1, "discoveryId": "shell_found", "desc": "海边捡到的贝壳，贴近耳朵能听到海浪声。" },
+    { "id": "sea_glass", "name": "海玻璃", "icon": "💎", "x": 43, "y": 14, "type": "collectible", "unlockDay": 2, "discoveryId": "sea_glass_found", "desc": "海水打磨过的玻璃，泛着柔和的蓝光。" }
+  ],
+  "npcs": [
+    { "id": "waigong", "name": "外公", "type": "waigong", "x": 11.5, "y": 13.5, "dir": "left" },
+    { "id": "fangjie", "name": "方姐", "type": "fangjie", "x": 19, "y": 13, "dir": "right" },
+    { "id": "chenbo", "name": "陈伯", "type": "chenbo", "x": 28, "y": 13, "dir": "right" },
+    { "id": "laozhou", "name": "老周", "type": "laozhou", "x": 42, "y": 11, "dir": "right" },
+    { "id": "pangshu", "name": "胖叔", "type": "pangshu", "x": 11, "y": 24, "dir": "right" },
+    { "id": "guanye", "name": "关爷", "type": "guanye", "x": 28, "y": 24, "dir": "right" }
+  ],
+  "decorations": [
+    { "type": "tree", "x": 16, "y": 22 },
+    { "type": "tree", "x": 22, "y": 25 },
+    { "type": "tree", "x": 33, "y": 25 },
+    { "type": "tree", "x": 15, "y": 28 },
+    { "type": "streetlamp", "x": 10, "y": 15 },
+    { "type": "streetlamp", "x": 18, "y": 15 },
+    { "type": "streetlamp", "x": 27, "y": 15 },
+    { "type": "streetlamp", "x": 36, "y": 15 },
+    { "type": "streetlamp", "x": 44, "y": 15 },
+    { "type": "streetlamp", "x": 24, "y": 8 },
+    { "type": "streetlamp", "x": 24, "y": 16 },
+    { "type": "streetlamp", "x": 24, "y": 24 },
+    { "type": "flower", "x": 9, "y": 22 },
+    { "type": "flower", "x": 16, "y": 19 },
+    { "type": "flower", "x": 23, "y": 22 },
+    { "type": "flower", "x": 32, "y": 22 },
+    { "type": "flower", "x": 37, "y": 24 },
+    { "type": "flower", "x": 15, "y": 26 },
+    { "type": "flower", "x": 22, "y": 28 },
+    { "type": "flower", "x": 35, "y": 28 }
+  ]
+}

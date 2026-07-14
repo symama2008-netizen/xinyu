@@ -1,0 +1,32 @@
+{
+  "id": "diner",
+  "name": "深夜食堂",
+  "room": {
+    "widthRatio": 0.65,
+    "heightRatio": 0.7
+  },
+  "background": {
+    "wall": "#8B6B4A",
+    "floor": "#5D4037",
+    "door": {
+      "x": 390,
+      "y": 504,
+      "w": 51,
+      "h": 38,
+      "color": "#FFD54F"
+    }
+  },
+  "furniture": [
+    { "id": "u_counter", "name": "U形吧台", "x": 180, "y": 250, "w": 460, "h": 60, "color": "#8B4513", "topColor": "#D2691E", "sortable": true },
+    { "id": "stove", "name": "灶台", "x": 660, "y": 350, "w": 130, "h": 85, "color": "#4A4A4A", "potColor": "#2F2F2F", "sortable": true },
+    { "id": "message_wall", "name": "留言墙", "x": 40, "y": 90, "w": 120, "h": 170, "color": "#DEB887", "noteColor": "#FFF8DC", "sortable": true },
+    { "id": "counter_stool", "name": "吧台凳", "x": 380, "y": 330, "w": 35, "h": 30, "color": "#A0522D", "sortable": true }
+  ],
+  "decorations": [
+    { "id": "lantern_light", "name": "暖黄灯笼", "x": 350, "y": 45, "w": 130, "h": 55, "color": "#FFD54F", "glowColor": "rgba(255,213,79,0.3)", "sortable": false },
+    { "id": "diner_sign", "name": "深夜食堂招牌", "x": 350, "y": 75, "w": 130, "h": 28, "color": "#8B4513", "textColor": "#FFD54F", "sortable": false }
+  ],
+  "items": [
+    { "id": "postcard", "name": "明信片", "icon": "📮", "x": 200, "y": 100, "w": 25, "h": 15, "interaction": "collect", "glow": true, "unlockDay": 2, "discoveryId": "postcard_found" }
+  ]
+}

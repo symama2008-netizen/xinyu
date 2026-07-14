@@ -1,0 +1,32 @@
+{
+  "id": "lighthouse",
+  "name": "灯塔",
+  "room": {
+    "widthRatio": 0.65,
+    "heightRatio": 0.7
+  },
+  "background": {
+    "wall": "#F5F5F5",
+    "floor": "#C0C0C0",
+    "door": {
+      "x": 390,
+      "y": 504,
+      "w": 51,
+      "h": 38,
+      "color": "#FFD54F"
+    }
+  },
+  "furniture": [
+    { "id": "spiral_stairs", "name": "螺旋楼梯", "x": 340, "y": 80, "w": 150, "h": 340, "color": "#8B4513", "sortable": true },
+    { "id": "chart_desk", "name": "航海图桌", "x": 80, "y": 370, "w": 170, "h": 60, "color": "#8B4513", "topColor": "#87CEEB", "sortable": true },
+    { "id": "keeper_bed", "name": "守塔人床", "x": 600, "y": 370, "w": 170, "h": 80, "color": "#8B4513", "mattressColor": "#FFF", "sortable": true },
+    { "id": "crystal_lamp", "name": "塔顶海晶灯", "x": 380, "y": 40, "w": 80, "h": 80, "color": "#FFD700", "glowColor": "rgba(255,215,0,0.3)", "sortable": true }
+  ],
+  "decorations": [
+    { "id": "round_window", "name": "圆窗", "x": 80, "y": 40, "w": 90, "h": 90, "color": "#87CEEB", "frameColor": "#FFF", "sortable": false },
+    { "id": "compass_deco", "name": "航海罗盘", "x": 700, "y": 40, "w": 70, "h": 70, "color": "#8B4513", "sortable": false }
+  ],
+  "items": [
+    { "id": "lighthouse_model", "name": "灯塔模型", "icon": "🗼", "x": 400, "y": 120, "w": 30, "h": 35, "interaction": "collect", "glow": true, "unlockDay": 3, "discoveryId": "lighthouse_model_found" }
+  ]
+}

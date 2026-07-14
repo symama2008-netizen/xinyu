@@ -1,0 +1,78 @@
+{
+  "npcId": "fangjie",
+  "name": "方姐",
+  "dialogueTree": [
+    {
+      "id": "fangjie_day1_first",
+      "day": 1,
+      "location": "bakery",
+      "condition": { "flag": null },
+      "lines": [
+        { "text": "阿晚！你外婆昨天就来跟我说了，说你今天要来。她激动得呀——在我这坐了好久，翻来覆去就那几句话：孙女回来了，瘦了，得补补。", "speaker": "fangjie" },
+        { "text": "你外婆还说——你小时候爱吃面包边。这话说了好多年了。", "speaker": "fangjie" }
+      ],
+      "setFlag": "metFangjie"
+    },
+    {
+      "id": "fangjie_day1_bread",
+      "day": 1,
+      "location": "bakery",
+      "condition": { "flags": { "metFangjie": true } },
+      "lines": [
+        { "text": "你外婆以前每个礼拜都来买面包边。我问她为什么光买边，她说孙女爱吃。后来你大了，她才改买牛角包。但她自己还是吃面包边——习惯了，说脆。你吃的每一口面包边，都是你外婆舍不得吃的。", "speaker": "fangjie" },
+        { "text": "这个送你。你外婆教我的配方。她说做面包就像照顾心里的小孩——不能急，得等它自己慢慢长开。", "speaker": "fangjie" }
+      ],
+      "options": [
+        {
+          "text": "【愣住】她从来没跟我说过这些……",
+          "emotion": { "calm": 5 },
+          "lines": [
+            { "text": "你外婆这个人——苦的全自己咽了。甜的留给你。", "speaker": "fangjie" }
+          ]
+        },
+        {
+          "text": "【微笑】谢谢方姐。这个味道，一点都没变。",
+          "emotion": { "brave": 5 },
+          "lines": [
+            { "text": "那就好。你外婆说，你小时候一吃这个就不哭。", "speaker": "fangjie" }
+          ]
+        },
+        {
+          "text": "【轻声】外婆年轻的时候，是什么样的？",
+          "emotion": { "calm": 3, "brave": 5 },
+          "discovery": "fangjie_story",
+          "lines": [
+            { "text": "年轻时候啊，一个人带着你妈，在码头缝渔网。手巧，人也硬气。后来有了你，她才慢慢变软了。", "speaker": "fangjie" },
+            { "text": "你知道你外婆以前从来不跟人聊天的吗？有了你之后，逢人就笑。我说你怎么变了，她说——抱着晚晚，心就满了。满了就想跟人说。", "speaker": "fangjie" }
+          ]
+        }
+      ],
+      "discovery": "fangjie_bread"
+    },
+    {
+      "id": "fangjie_day2",
+      "day": 2,
+      "location": "bakery",
+      "lines": [
+        { "text": "今天想吃什么？牛角包？面包边？还是心形欧包？", "speaker": "fangjie" }
+      ]
+    },
+    {
+      "id": "fangjie_day3",
+      "day": 3,
+      "location": "bakery",
+      "lines": [
+        { "text": "要走了吗？你外婆跟我说了。路上自己照顾好。", "speaker": "fangjie" },
+        { "text": "面包边我给你留着。你想吃了就回来。", "speaker": "fangjie" }
+      ]
+    },
+    {
+      "id": "fangjie_generic",
+      "day": 0,
+      "location": "bakery",
+      "lines": [
+        { "text": "今天的面包刚出炉，特别香。", "speaker": "fangjie" }
+      ]
+    }
+  ]
+}

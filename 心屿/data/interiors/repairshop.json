@@ -1,0 +1,33 @@
+{
+  "id": "repairshop",
+  "name": "修理铺",
+  "room": {
+    "widthRatio": 0.65,
+    "heightRatio": 0.7
+  },
+  "background": {
+    "wall": "#B0BEC5",
+    "floor": "#616161",
+    "door": {
+      "x": 390,
+      "y": 504,
+      "w": 51,
+      "h": 38,
+      "color": "#FFD54F"
+    }
+  },
+  "furniture": [
+    { "id": "workbench", "name": "工作台", "x": 240, "y": 310, "w": 280, "h": 60, "color": "#8B4513", "topColor": "#A0522D", "sortable": true },
+    { "id": "parts_wall", "name": "零件墙", "x": 40, "y": 90, "w": 130, "h": 220, "color": "#4A4A4A", "shelfColor": "#6B6B6B", "sortable": true },
+    { "id": "old_radio", "name": "旧收音机", "x": 610, "y": 200, "w": 90, "h": 65, "color": "#5D4037", "dialColor": "#FFD700", "sortable": true },
+    { "id": "grandfather_clock", "name": "座钟", "x": 710, "y": 90, "w": 65, "h": 120, "color": "#8B4513", "faceColor": "#FFF8DC", "sortable": true }
+  ],
+  "decorations": [
+    { "id": "iron_sign", "name": "铁皮招牌", "x": 350, "y": 45, "w": 130, "h": 28, "color": "#4A4A4A", "textColor": "#FFD54F", "sortable": false },
+    { "id": "gear_deco", "name": "齿轮装饰", "x": 640, "y": 360, "w": 70, "h": 70, "color": "#808080", "sortable": false }
+  ],
+  "items": [
+    { "id": "windmill", "name": "小风车", "icon": "🎏", "x": 350, "y": 200, "w": 20, "h": 25, "interaction": "collect", "glow": true, "unlockDay": 2, "discoveryId": "windmill_found" },
+    { "id": "old_key", "name": "老钥匙", "icon": "🗝️", "x": 250, "y": 250, "w": 22, "h": 15, "interaction": "collect", "glow": true, "unlockDay": 3, "discoveryId": "key_found" }
+  ]
+}

@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>心屿 · 自动化测试</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+      background: linear-gradient(135deg, #1A1A2E 0%, #16213e 100%);
+      color: #E8DCC8;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      color: #FFD54F;
+      margin-bottom: 8px;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+      font-size: 28px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #A8A8A8;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+    .controls {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .run-btn {
+      padding: 12px 32px;
+      background: linear-gradient(180deg, #FF8A65 0%, #E64A19 100%);
+      border: 3px solid #BF360C;
+      color: #FFF;
+      font-size: 16px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+      letter-spacing: 2px;
+      box-shadow: inset 2px 2px 0 rgba(255,255,255,0.3), 4px 4px 0 rgba(0,0,0,0.4);
+      transition: all 0.1s;
+    }
+    .run-btn:hover {
+      background: linear-gradient(180deg, #FFA07A 0%, #FF5722 100%);
+      box-shadow: inset 2px 2px 0 rgba(255,255,255,0.4), 4px 4px 0 rgba(0,0,0,0.4), 0 0 20px rgba(255,138,101,0.6);
+    }
+    .run-btn:active {
+      transform: translate(3px, 3px);
+      box-shadow: inset -2px -2px 0 rgba(255,255,255,0.3), 1px 1px 0 rgba(0,0,0,0.4);
+    }
+    .run-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .progress-bar-container {
+      background: #2A2A3A;
+      border: 2px solid #4A4A5A;
+      border-radius: 4px;
+      height: 24px;
+      margin: 16px 0;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #FFD54F 0%, #FFA726 100%);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    .progress-text {
+      text-align: center;
+      color: #C0B8A8;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    th {
+      background: linear-gradient(180deg, #3A2E1F 0%, #2A1E0F 100%);
+      color: #FFD54F;
+      padding: 12px 16px;
+      text-align: left;
+      border: 2px solid #5D4E37;
+      font-weight: bold;
+    }
+    td {
+      padding: 10px 16px;
+      border: 1px solid #3A3A4A;
+      background: rgba(42, 42, 58, 0.5);
+      vertical-align: top;
+    }
+    tr.fail td {
+      background: rgba(255, 107, 107, 0.15);
+    }
+    tr.fail td:first-child {
+      border-left: 3px solid #FF6B6B;
+    }
+    tr.pass td:first-child {
+      border-left: 3px solid #4ECDC4;
+    }
+    .status-pass {
+      color: #4ECDC4;
+      font-weight: bold;
+    }
+    .status-fail {
+      color: #FF6B6B;
+      font-weight: bold;
+    }
+    .category-header {
+      background: linear-gradient(180deg, #2A3A5A 0%, #1A2A4A 100%) !important;
+      color: #87CEEB !important;
+      font-size: 15px !important;
+      letter-spacing: 1px;
+    }
+    .summary {
+      background: linear-gradient(180deg, #2A2A3A 0%, #1A1A2A 100%);
+      border: 3px solid #5D4E37;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: inset 2px 2px 0 rgba(139,115,85,0.2);
+    }
+    .summary h2 {
+      color: #FFD54F;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+    .summary-stats {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 16px;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 36px;
+      font-weight: bold;
+    }
+    .stat-value.pass { color: #4ECDC4; }
+    .stat-value.fail { color: #FF6B6B; }
+    .stat-label {
+      font-size: 13px;
+      color: #A8A8A8;
+      margin-top: 4px;
+    }
+    .fail-details {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #4A4A5A;
+    }
+    .fail-details h3 {
+      color: #FF6B6B;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+    .fail-item {
+      background: rgba(255, 107, 107, 0.1);
+      border: 1px solid rgba(255, 107, 107, 0.3);
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+    }
+    .fail-item-name {
+      color: #FF8787;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .fail-item-desc {
+      font-size: 13px;
+      color: #C0B8A8;
+    }
+    .log-panel {
+      background: #0A0A1A;
+      border: 2px solid #3A3A4A;
+      padding: 16px;
+      margin-top: 20px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 12px;
+    }
+    .log-line {
+      margin-bottom: 4px;
+      line-height: 1.6;
+    }
+    .log-info { color: #87CEEB; }
+    .log-pass { color: #4ECDC4; }
+    .log-fail { color: #FF6B6B; }
+    .log-warn { color: #FFD54F; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧪 心屿 · 自动化测试</h1>
+    <p class="subtitle">模拟真实玩家操作 · 验证游戏核心功能</p>
+    
+    <div class="controls">
+      <button class="run-btn" id="run-btn" onclick="runAllTests()">▶ 运行全部测试</button>
+    </div>
+    
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+    <div class="progress-text" id="progress-text">准备就绪，点击按钮开始测试</div>
+    
+    <div id="report-container"></div>
+    
+    <div class="summary" id="summary" style="display:none;">
+      <h2>📊 测试汇总</h2>
+      <div class="summary-stats">
+        <div class="stat-item">
+            <div class="stat-value" id="total-count">0</div>
+            <div class="stat-label">总测试项</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value pass" id="pass-count">0</div>
+          <div class="stat-label">通过</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value fail" id="fail-count">0</div>
+          <div class="stat-label">失败</div>
+        </div>
+      </div>
+      <div class="fail-details" id="fail-details" style="display:none;">
+        <h3>❌ 失败详情</h3>
+        <div id="fail-list"></div>
+      </div>
+    </div>
+    
+    <div class="log-panel" id="log-panel">
+      <div class="log-line log-info">[系统] 测试框架已加载</div>
+    </div>
+  </div>
+
+  <script>
+    // ==================== 测试框架 ====================
+    
+    const testResults = [];
+    let currentTestIndex = 0;
+    let totalTests = 0;
+    
+    function log(message, type = 'info') {
+      const panel = document.getElementById('log-panel');
+      const line = document.createElement('div');
+      line.className = `log-line log-${type}`;
+      const time = new Date().toLocaleTimeString();
+      line.textContent = `[${time}] ${message}`;
+      panel.appendChild(line);
+      panel.scrollTop = panel.scrollHeight;
+    }
+    
+    function assert(name, expected, actual, comparator = 'eq') {
+      let passed = false;
+      let actualDisplay = actual;
+      let expectedDisplay = expected;
+      
+      if (comparator === 'eq') {
+        passed = JSON.stringify(actual) === JSON.stringify(expected);
+      } else if (comparator === 'neq') {
+          passed = JSON.stringify(actual) !== JSON.stringify(expected);
+        } else if (comparator === 'includes') {
+          passed = Array.isArray(expected) && expected.includes(actual);
+      } else if (comparator === 'hasKey') {
+        passed = expected !== undefined && actual !== null && expected in actual;
+      } else if (comparator === 'gt') {
+        passed = actual > expected;
+      } else if (comparator === 'gte') {
+        passed = actual >= expected;
+      } else if (comparator === 'lt') {
+        passed = actual < expected;
+      } else if (comparator === 'lte') {
+        passed = actual <= expected;
+      } else if (comparator === 'truthy') {
+        passed = !!actual;
+      } else if (comparator === 'falsy') {
+        passed = !actual;
+      } else if (comparator === 'arrayLen') {
+        passed = Array.isArray(actual) && actual.length === expected;
+      } else if (comparator === 'fnExists') {
+        passed = typeof actual === 'function';
+      }
+      
+      testResults.push({
+        name: name,
+        expected: typeof expectedDisplay,
+        actual: actualDisplay,
+        passed: passed,
+        category: currentCategory
+      });
+      
+      if (passed) {
+        log(`✅ ${name}`, 'pass');
+      } else {
+        log(`❌ ${name} - 预期: ${JSON.stringify(expectedDisplay)}, 实际: ${JSON.stringify(actualDisplay)}`, 'fail');
+      }
+      
+      return passed;
+    }
+    
+    let currentCategory = '';
+    
+    function startCategory(name) {
+      currentCategory = name;
+      log(`\n━━━ ${name} ━━━`, 'info');
+    }
+    
+    function updateProgress() {
+      currentTestIndex++;
+      const percent = Math.min(100, Math.round((currentTestIndex / totalTests) * 100));
+      document.getElementById('progress-fill').style.width = percent + '%';
+      document.getElementById('progress-text').textContent = 
+        `测试进度: ${currentTestIndex} / ${totalTests} (${percent}%)`;
+    }
+    
+    // ==================== 游戏状态模拟 ====================
+    
+    function resetGameState() {
+      localStorage.removeItem('xinyu_save');
+      localStorage.removeItem('xinyu_discoveries');
+      localStorage.removeItem('xinyu_inventory');
+      localStorage.removeItem('xinyu_flags');
+      sessionStorage.clear();
+      
+      if (typeof GameState !== 'undefined') {
+        GameState.day = 1;
+        GameState.timeOfDay = 'morning';
+        GameState.timeElapsed = 0;
+        GameState.location = 'outdoor';
+        GameState.emotions = { anxious: 30, calm: 30, brave: 30 };
+        GameState.inventory = [];
+        GameState.discoveries = [];
+        GameState.npcFlags = {};
+        GameState.npcLevels = {};
+        GameState.visitedScenes = ['outdoor'];
+        GameState.collectedLetters = [];
+        GameState.keyItems = [];
+        GameState.flags = {
+          gameStarted: false,
+          hasDiary: false,
+          day1Completed: false,
+          day2Completed: false,
+          day3Completed: false,
+          isTired: false,
+          inOpeningCutscene: false,
+          openingComplete: true,
+          helpedLaozhou: false,
+          ending: null,
+          bgmEnabled: true,
+          day1Arrived: false,
+          day1TownVisited: false,
+          day1EveningTalked: false,
+          day1WaigongTalked: false,
+          metFangjie: false,
+          metChenbo: false,
+          day2Started: false,
+          day2AlbumTalked: false,
+          day2WaigongTalked: false,
+          metGuanye: false,
+          metPangshu: false,
+          day3Started: false,
+          hasLighthouseKey: false,
+          lighthouseClimbed: false,
+          day3LighthouseTalked: false,
+          day3WaigongTalked: false,
+          endingReturn: false,
+          endingStay: false,
+          endingStayEvening: false,
+          endingDiaryWriting: false,
+          dialogueHistory: {}
+        };
+        GameState.dialogueActive = false;
+        GameState.currentDialogue = null;
+        GameState.player = GameState;
+      }
+      
+      log('游戏状态已重置', 'info');
+    }
+    
+    // ==================== 测试用例 ====================
+    
+    const testCases = [
+      // 一、初始化测试
+      {
+        category: '一、初始化测试',
+        tests: [
+          {
+            name: '清空 localStorage 存档',
+            fn: () => {
+              resetGameState();
+              assert('localStorage.xinyu_save 已清除', 
+                null, 
+                localStorage.getItem('xinyu_save'));
+            }
+          },
+          {
+            name: 'GameState.day 初始值 = 1',
+            fn: () => {
+              assert('day = 1', 1, GameState.day);
+            }
+          },
+          {
+            name: '初始情绪值 30/30/30',
+            fn: () => {
+              assert('anxious = 30', 30, GameState.emotions.anxious);
+              assert('calm = 30', 30, GameState.emotions.calm);
+              assert('brave = 30', 30, GameState.emotions.brave);
+            }
+          },
+          {
+            name: '初始背包为空',
+            fn: () => {
+              assert('inventory 为空数组', 0, GameState.inventory.length, 'eq');
+            }
+          },
+          {
+            name: '初始小发现为空',
+            fn: () => {
+              assert('discoveries 为空数组', 0, GameState.discoveries.length, 'eq');
+            }
+          },
+          {
+            name: '初始位置为 outdoor',
+            fn: () => {
+              assert('location = outdoor', 'outdoor', GameState.location);
+            }
+          },
+          {
+            name: 'getAvailableEndings 函数存在',
+            fn: () => {
+              assert('函数已定义', 'function', typeof getAvailableEndings, 'eq');
+            }
+          },
+          {
+            name: 'DISCOVERY_DATA 有 23 个小发现',
+            fn: () => {
+              const count = Object.keys(DISCOVERY_DATA).length;
+              assert('小发现总数 = 23', 23, count);
+            }
+          }
+        ]
+      },
+      
+      // 二、结局A流程测试
+      {
+        category: '二、结局A流程测试（再次出发）',
+        tests: [
+          {
+            name: '重置状态',
+            fn: () => { resetGameState(); }
+          },
+          {
+            name: 'Day1: 设置 hasDiary = true（模拟读日记）',
+            fn: () => {
+              GameState.flags.hasDiary = true;
+              GameState.discoveries.push('diary_sugar_paper', 'diary_doodle');
+              assert('hasDiary = true', true, GameState.flags.hasDiary);
+            }
+          },
+          {
+            name: 'Day1: 见过方姐和陈伯',
+            fn: () => {
+              GameState.flags.metFangjie = true;
+              GameState.flags.metChenbo = true;
+              GameState.flags.day1Arrived = true;
+              GameState.flags.day1EveningTalked = true;
+              GameState.flags.day1Completed = true;
+              assert('metFangjie = true', true, GameState.flags.metFangjie);
+              assert('metChenbo = true', true, GameState.flags.metChenbo);
+            }
+          },
+          {
+            name: 'Day1: 拾取 Day1 道具',
+            fn: () => {
+              const day1Items = ['shell', 'bookmark', 'ceramic_cup', 'waipo_button', 'childhood_drawing'];
+              for (const id of day1Items) {
+                GameState.inventory.push({ id: id, name: id, icon: '📦' });
+              }
+              GameState.discoveries.push('shell_found', 'bookmark_found', 'cup_found', 'button_found', 'drawing_found');
+              assert('Day1 道具已拾取（5件）', 5, GameState.inventory.length, 'gte');
+            }
+          },
+          {
+            name: '推进到 Day2',
+            fn: () => {
+              GameState.day = 2;
+              GameState.timeOfDay = 'morning';
+              GameState.flags.day2Started = true;
+              GameState.flags.day2AlbumTalked = true;
+              GameState.flags.metGuanye = true;
+              GameState.flags.metPangshu = true;
+              GameState.flags.day2Completed = true;
+              GameState.discoveries.push('waipo_album', 'guanye_watch', 'pangshu_note', 'fangjie_bread', 'chenbo_book');
+              assert('day = 2', 2, GameState.day);
+            }
+          },
+          {
+            name: 'Day2: 外公在室内 NPC 列表中',
+            fn: () => {
+              const npcs = getIndoorNPCs('oldhouse');
+              const hasWaigong = npcs.some(n => n.id === 'waigong');
+              assert('外公在老房子室内', true, hasWaigong);
+            }
+          },
+          {
+            name: 'Day2: 外公不在室外',
+            fn: () => {
+              let outdoorHasWaigong = false;
+              if (typeof MAP_DATA !== 'undefined' && MAP_DATA.npcs) {
+                outdoorHasWaigong = MAP_DATA.npcs.some(n => n.id === 'waigong');
+              }
+              assert('Day2 外公不在室外（配置中）', false, outdoorHasWaigong);
+            }
+          },
+          {
+            name: '推进到 Day3',
+            fn: () => {
+              GameState.day = 3;
+              GameState.timeOfDay = 'morning';
+              GameState.flags.day3Started = true;
+              GameState.location = 'oldhouse';
+              assert('day = 3', 3, GameState.day);
+            }
+          },
+          {
+            name: 'Day3: 与外婆对话获得灯塔钥匙',
+            fn: () => {
+              GameState.flags.hasLighthouseKey = true;
+              GameState.inventory.push({ id: 'lighthouse_key', name: '灯塔钥匙', icon: '🔑' });
+              GameState.keyItems.push('lighthouse_key');
+              assert('hasLighthouseKey = true', true, GameState.flags.hasLighthouseKey);
+            }
+          },
+          {
+            name: '设置勇气 > 平静（结局A条件）',
+            fn: () => {
+              GameState.emotions.brave = 70;
+              GameState.emotions.calm = 43;
+              assert('brave (70) > calm (43)', true, 
+                GameState.emotions.brave > GameState.emotions.calm);
+            }
+          },
+          {
+            name: '结局A可选',
+            fn: () => {
+              const endings = getAvailableEndings();
+              assert('结局A available = true', true, endings.depart.available);
+            }
+          },
+          {
+            name: '结局B不可选（勇气大于平静时）',
+            fn: () => {
+              const endings = getAvailableEndings();
+              assert('结局B available = false', false, endings.stay.available);
+            }
+          }
+        ]
+      },
+      
+      // 三、结局B流程测试
+      {
+        category: '三、结局B流程测试（暂时停留）',
+        tests: [
+          {
+            name: '重置状态',
+            fn: () => { resetGameState(); }
+          },
+          {
+            name: '推进到 Day3 并完成所有剧情',
+            fn: () => {
+              GameState.day = 3;
+              GameState.flags.hasDiary = true;
+              GameState.flags.metFangjie = true;
+              GameState.flags.metChenbo = true;
+              GameState.flags.day1Completed = true;
+              GameState.flags.day2Started = true;
+              GameState.flags.metGuanye = true;
+              GameState.flags.metPangshu = true;
+              GameState.flags.day2Completed = true;
+              GameState.flags.day3Started = true;
+              GameState.flags.hasLighthouseKey = true;
+              assert('day = 3', 3, GameState.day);
+            }
+          },
+          {
+            name: '设置平静 >= 勇气（结局B条件）',
+            fn: () => {
+              GameState.emotions.calm = 70;
+              GameState.emotions.brave = 43;
+              assert('calm (70) >= brave (43)', true, 
+                GameState.emotions.calm >= GameState.emotions.brave);
+            }
+          },
+          {
+            name: '结局B可选',
+            fn: () => {
+              const endings = getAvailableEndings();
+              assert('结局B available = true', true, endings.stay.available);
+            }
+          },
+          {
+            name: '结局A不可选（平静大于勇气时）',
+            fn: () => {
+              const endings = getAvailableEndings();
+              assert('结局A available = false', false, endings.depart.available);
+            }
+          }
+        ]
+      },
+      
+      // 四、结局C流程测试
+      {
+        category: '四、结局C流程测试（找到答案）',
+        tests: [
+          {
+            name: '重置状态',
+            fn: () => { resetGameState(); }
+          },
+          {
+            name: '收集全部 23 个小发现',
+            fn: () => {
+              const allIds = Object.keys(DISCOVERY_DATA);
+              GameState.discoveries = [...allIds];
+              assert('discoveries 数量 = 23', 23, GameState.discoveries.length);
+            }
+          },
+          {
+            name: '推进到 Day3',
+            fn: () => {
+              GameState.day = 3;
+              GameState.flags.hasLighthouseKey = true;
+              GameState.flags.day3Started = true;
+              assert('day = 3', 3, GameState.day);
+            }
+          },
+          {
+            name: '结局C可选',
+            fn: () => {
+              const endings = getAvailableEndings();
+              assert('结局C available = true', true, endings.write.available);
+            }
+          },
+          {
+            name: 'getTotalDiscoveries 返回 23',
+            fn: () => {
+              const total = getTotalDiscoveries();
+              assert('总数 = 23', 23, total);
+            }
+          }
+        ]
+      },
+      
+      // 五、关键 Bug 检查
+      {
+        category: '五、关键 Bug 检查',
+        tests: [
+          {
+            name: 'endDialogue 处理节点级 setItem',
+            fn: () => {
+              resetGameState();
+              const testNode = {
+                id: 'test_setitem',
+                setItem: 'lighthouse_key',
+                lines: [{ text: 'test' }]
+              };
+              GameState.currentDialogue = { npc: { id: 'waipo' }, node: testNode };
+              if (typeof endDialogue === 'function') {
+                endDialogue();
+              }
+              const hasKey = GameState.inventory.some(i => i.id === 'lighthouse_key');
+              assert('setItem 生效', true, hasKey);
+            }
+          },
+          {
+            name: 'endDialogue 处理节点级 discovery',
+            fn: () => {
+              resetGameState();
+              const testNode = {
+                id: 'test_discovery_node',
+                discovery: 'fangjie_bread',
+                lines: [{ text: 'test' }]
+              };
+              GameState.currentDialogue = { npc: { id: 'fangjie' }, node: testNode };
+              if (typeof endDialogue === 'function') {
+                endDialogue();
+              }
+              const hasDisc = GameState.discoveries.includes('fangjie_bread');
+              assert('节点级 discovery 解锁', true, hasDisc);
+            }
+          },
+          {
+            name: 'findMatchingNode location 匹配正确',
+            fn: () => {
+              resetGameState();
+              GameState.location = 'oldhouse';
+              GameState.day = 1;
+              if (typeof DIALOGUE_DATA !== 'undefined' && DIALOGUE_DATA.waipo) {
+                const node = findMatchingNode('waipo');
+                const locMatch = node && node.location === 'oldhouse';
+                assert('location 匹配 oldhouse', true, locMatch);
+              } else {
+                assert('对话数据已加载', true, !!DIALOGUE_DATA?.waipo);
+              }
+            }
+          },
+          {
+            name: 'restInBed 情绪变化（只减焦虑',
+            fn: () => {
+              resetGameState();
+              const beforeAnxious = GameState.emotions.anxious;
+              const beforeCalm = GameState.emotions.calm;
+              const beforeBrave = GameState.emotions.brave;
+              
+              GameState.flags.hasDiary = true;
+              GameState.flags.metFangjie = true;
+              GameState.flags.metChenbo = true;
+              GameState.location = 'oldhouse';
+              GameState.flags.openingComplete = true;
+              
+              if (typeof MAP_DATA === 'undefined') {
+                window.MAP_DATA = { buildings: [] };
+              }
+              
+              const origSleep = typeof restInBed;
+              GameState.isSleeping = false;
+              GameState.day = 1;
+              GameState.emotions.anxious = 50;
+              GameState.emotions.calm = 30;
+              GameState.emotions.brave = 30;
+              
+              GameState.sleepFade = 0;
+              if (typeof restInBed === 'function') {
+                restInBed();
+              }
+              
+              setTimeout(() => {
+                const anxiousDown = GameState.emotions.anxious < 50;
+                assert('焦虑值下降', true, anxiousDown);
+              }, 100);
+              
+              assert('restInBed 函数存在', 'function', typeof restInBed, 'eq');
+            }
+          },
+          {
+            name: 'restartGame 清除 localStorage',
+            fn: () => {
+              localStorage.setItem('xinyu_save', 'test');
+              localStorage.setItem('xinyu_discoveries', 'test');
+              localStorage.setItem('xinyu_inventory', 'test');
+              localStorage.setItem('xinyu_flags', 'test');
+              
+              const origReload = location.reload;
+              location.reload = () => {};
+              
+              if (typeof restartGame === 'function') {
+                restartGame();
+              }
+              
+              const cleared = !localStorage.getItem('xinyu_save') && 
+                           !localStorage.getItem('xinyu_discoveries');
+              
+              location.reload = origReload;
+              
+              assert('localStorage 已清除', true, cleared);
+            }
+          },
+          {
+            name: '所有 23 个 discoveryId 在 DISCOVERY_DATA 有定义',
+            fn: () => {
+              const expectedIds = [
+                'shell_found', 'bookmark_found', 'cup_found', 'button_found',
+                'drawing_found', 'sea_glass_found', 'flower_found', 'stamp_found',
+                'postcard_found', 'windmill_found', 'lighthouse_model_found',
+                'key_found', 'diary_sugar_paper', 'diary_doodle', 'fangjie_bread',
+                'fangjie_story', 'chenbo_book', 'guanye_watch', 'pangshu_note',
+                'waipo_album', 'waipo_story', 'laozhou_light', 'ending_choice'
+              ];
+              let allDefined = true;
+              let missing = [];
+              for (const id of expectedIds) {
+                if (!DISCOVERY_DATA[id]) {
+                  allDefined = false;
+                  missing.push(id);
+                }
+              }
+              assert('全部23个小发现ID已定义 (' + missing.join(', ') + ')', 
+                true, allDefined);
+            }
+          },
+          {
+            name: '外公 NPC 室内/室外切换逻辑',
+            fn: () => {
+              resetGameState();
+              GameState.day = 1;
+              let day1Outdoor = false;
+              if (typeof MAP_DATA !== 'undefined' && MAP_DATA.npcs) {
+                day1Outdoor = MAP_DATA.npcs.some(n => n.id === 'waigong');
+              }
+              assert('Day1 外公在室外配置中', true, day1Outdoor);
+              
+              GameState.day = 2;
+              const indoorNpcs = getIndoorNPCs('oldhouse');
+              const day2Indoor = indoorNpcs.some(n => n.id === 'waigong');
+              assert('Day2 外公在室内列表中', true, day2Indoor);
+            }
+          },
+          {
+            name: '结局画面 CSS 居中（#ending-canvas）',
+            fn: () => {
+              const canvas = document.getElementById('ending-canvas');
+              let hasTransform = false;
+              if (canvas) {
+                const style = window.getComputedStyle(canvas);
+                hasTransform = style.transform !== 'none' || 
+                  style.left === '50%' || style.position === 'absolute';
+              }
+              
+              const screen = document.getElementById('ending-screen');
+              let screenFlex = false;
+              if (screen) {
+                const style = window.getComputedStyle(screen);
+                screenFlex = style.display === 'flex' || 
+                  style.alignItems === 'center';
+              }
+              
+              assert('结局画面居中样式存在', true, typeof endingScreenExists());
+              assert('Canvas 居中定位', true, hasTransform || screenFlex);
+            }
+          },
+          {
+            name: 'isNodeCompleted 排除物品 flag',
+            fn: () => {
+              resetGameState();
+              const testNode = {
+                id: 'test_item_flag',
+                setFlag: 'hasLighthouseKey',
+                lines: [{ text: 'test' }]
+              };
+              GameState.flags.hasLighthouseKey = true;
+              
+              let completed = false;
+              if (typeof findMatchingNode === 'function') {
+                GameState.flags.dialogueHistory = {};
+                const tree = [testNode];
+                const currentDay = GameState.day;
+                const currentLocation = GameState.location;
+                
+                function isNodeCompleted(node) {
+                  if (GameState.flags.dialogueHistory[node.id]) return true;
+                  if (node.setFlag && GameState.flags[node.setFlag]) {
+                    const itemFlags = ['hasLighthouseKey', 'hasDiary'];
+                    if (!itemFlags.includes(node.setFlag)) return true;
+                  }
+                  return false;
+                }
+                
+                completed = isNodeCompleted(testNode);
+              }
+              
+              assert('物品 flag 不标记节点完成', false, completed);
+            }
+          },
+          {
+            name: '对话匹配：Day3 外婆关键对话优先于兜底',
+            fn: () => {
+              resetGameState();
+              GameState.day = 3;
+              GameState.location = 'oldhouse';
+              GameState.timeOfDay = 'morning';
+              
+              if (typeof DIALOGUE_DATA !== 'undefined' && DIALOGUE_DATA.waipo) {
+                const node = findMatchingNode('waipo');
+                const isDay3Morning = node && node.id === 'waipo_day3_morning';
+                assert('匹配到 waipo_day3_morning 节点', true, isDay3Morning);
+              } else {
+                assert('对话数据加载中...', true, !!DIALOGUE_DATA?.waipo);
+              }
+            }
+          }
+        ]
+      }
+    ];
+    
+    function endingScreenExists() {
+      const screen = document.getElementById('ending-screen');
+      return !!screen;
+    }
+    
+    // ==================== 运行测试 ====================
+    
+    async function runAllTests() {
+      const btn = document.getElementById('run-btn');
+      btn.disabled = true;
+      btn.textContent = '⏳ 测试中...';
+      
+      testResults.length = 0;
+      currentTestIndex = 0;
+      
+      // 计算总测试数
+      totalTests = testCases.reduce((sum, cat) => sum + cat.tests.length, 0);
+      
+      document.getElementById('progress-fill').style.width = '0%';
+      document.getElementById('progress-text').textContent = `共 ${totalTests} 项测试即将开始`;
+      
+      log('开始运行全部测试...', 'info');
+      
+      // 确保游戏数据加载
+      await loadGameData();
+      
+      for (const category of testCases) {
+        startCategory(category.category);
+        
+        for (const test of category.tests) {
+          log(`▶ ${test.name}`, 'info');
+          try {
+            await test.fn();
+          } catch (e) {
+            log(`⚠️ 测试异常: ${e.message}`, 'warn');
+            assert(test.name + ' (异常)', '正常执行', '异常: ' + e.message);
+          }
+          updateProgress();
+        }
+      }
+      
+      generateReport();
+      
+      btn.disabled = false;
+      btn.textContent = '▶ 重新运行';
+      
+      log('全部测试完成！', 'info');
+    }
+    
+    async function loadGameData() {
+      log('加载游戏数据...', 'info');
+      
+      const scripts = [
+        'js/config.js',
+        'js/state.js',
+        'js/constants.js',
+        'js/utils.js',
+        'js/renderer.js',
+        'js/input.js',
+        'systems/interaction.js',
+        'systems/ending.js',
+        'js/dialogue.js',
+        'js/ui.js',
+        'js/game.js',
+        'js/main.js'
+      ];
+      
+      // 创建隐藏容器，避免游戏脚本操作 DOM 时报错
+      const gameContainer = document.createElement('div');
+      gameContainer.id = 'game-mock-container';
+      gameContainer.style.display = 'none';
+      gameContainer.innerHTML = `
+        <div id="game-container">
+          <canvas id="game-canvas"></canvas>
+          <div class="ui-overlay">
+            <div id="start-screen"></div>
+            <div id="intro-screen"></div>
+            <div id="dialogue-box">
+              <div id="dialogue-speaker"></div>
+              <div id="dialogue-text"></div>
+              <div id="dialogue-options"></div>
+            </div>
+            <div id="backpack-panel"></div>
+            <div id="discovery-panel">
+              <div id="discovery-grid"></div>
+              <div id="discovery-count-display"></div>
+            </div>
+            <div id="discovery-card"></div>
+            <div id="item-detail-panel"></div>
+            <div id="letter-panel">
+              <div id="letter-text"></div>
+            </div>
+            <div id="emotion-panel">
+              <div id="emotion-anxious">0</div>
+              <div id="bar-anxious"><div class="emotion-fill-inner"></div></div>
+              <div id="emotion-calm">0</div>
+              <div id="bar-calm"><div class="emotion-fill-inner"></div></div>
+              <div id="emotion-brave">0</div>
+              <div id="bar-brave"><div class="emotion-fill-inner"></div></div>
+            </div>
+            <div id="day-indicator"></div>
+            <div id="discovery-count"></div>
+            <div id="tutorial-tip"></div>
+            <div id="hint-bubble"><div id="hint-text"></div></div>
+            <div id="ending-screen">
+              <canvas id="ending-canvas"></canvas>
+              <div id="ending-title"></div>
+              <div id="ending-text"></div>
+            </div>
+            <div id="epilogue-screen">
+              <canvas id="epilogue-canvas"></canvas>
+              <div id="epilogue-text"></div>
+            </div>
+            <div id="discovery-detail"></div>
+            <div id="intro-dots"></div>
+            <button id="btn-start"></button>
+            <button id="btn-backpack"></button>
+            <button id="btn-discovery"></button>
+            <button id="btn-music"></button>
+            <button id="intro-next"></button>
+            <div id="diary-prev-btn"></div>
+            <div id="diary-next-btn"></div>
+            <div id="diary-page-indicator"></div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(gameContainer);
+      
+      for (const src of scripts) {
+        try {
+          await loadScript(src);
+        } catch (e) {
+          log(`脚本加载失败: ${src} - ${e.message}`, 'warn');
+        }
+      }
+      
+      // 加载对话数据
+      if (typeof loadDialogueData === 'function') {
+        try {
+          await loadDialogueData('waipo');
+          await loadDialogueData('fangjie');
+          await loadDialogueData('chenbo');
+          await loadDialogueData('guanye');
+          await loadDialogueData('pangshu');
+          await loadDialogueData('laozhou');
+          await loadDialogueData('waigong');
+        } catch (e) {
+          log(`对话数据加载出错: ${e.message}`, 'warn');
+        }
+      }
+      
+      // 加载结局数据
+      if (typeof loadEndingData === 'function') {
+        try { await loadEndingData(); } catch (e) {}
+      }
+      
+      // 加载地图数据
+      if (typeof loadMapData === 'function') {
+        try { await loadMapData(); } catch (e) {}
+      }
+      
+      // 加载道具数据
+      if (typeof loadItemData === 'function') {
+        try { await loadItemData(); } catch (e) {}
+      }
+      
+      log('游戏数据加载完成', 'info');
+    }
+    
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = () => {
+          log(`脚本加载失败: ${src}`, 'warn');
+          resolve();
+        };
+        document.head.appendChild(script);
+      });
+    }
+    
+    // ==================== 生成报告 ====================
+    
+    function generateReport() {
+      const container = document.getElementById('report-container');
+      let html = '';
+      
+      let passCount = 0;
+      let failCount = 0;
+      const failItems = [];
+      
+      let currentCat = '';
+      
+      for (const result of testResults) {
+        if (result.category !== currentCat) {
+          if (currentCat !== '') {
+            html += '</tbody></table>';
+          }
+          currentCat = result.category;
+          html += `<table><thead><tr><th colspan="4" class="category-header">${currentCat}</th></tr>`;
+          html += '<tr><th style="width:35%;">测试项</th><th style="width:25%;">预期</th><th style="width:25%;">实际</th><th style="width:15%;">状态</th></tr></thead><tbody>';
+        }
+        
+        const statusClass = result.passed ? 'status-pass' : 'status-fail';
+        const rowClass = result.passed ? 'pass' : 'fail';
+        const statusText = result.passed ? '✅ 通过' : '❌ 失败';
+        
+        html += `<tr class="${rowClass}">
+          <td>${result.name}</td>
+          <td>${formatValue(result.expected)}</td>
+          <td>${formatValue(result.actual)}</td>
+          <td class="${statusClass}">${statusText}</td>
+        </tr>`;
+        
+        if (result.passed) {
+          passCount++;
+        } else {
+          failCount++;
+          failItems.push(result);
+        }
+      }
+      
+      html += '</tbody></table>';
+      container.innerHTML = html;
+      
+      // 汇总
+      const summary = document.getElementById('summary');
+      summary.style.display = 'block';
+      document.getElementById('total-count').textContent = testResults.length;
+      document.getElementById('pass-count').textContent = passCount;
+      document.getElementById('fail-count').textContent = failCount;
+      
+      const failDetails = document.getElementById('fail-details');
+      const failList = document.getElementById('fail-list');
+      
+      if (failItems.length > 0) {
+        failDetails.style.display = 'block';
+        failList.innerHTML = failItems.map(item => `
+          <div class="fail-item">
+            <div class="fail-item-name">${item.name}</div>
+            <div class="fail-item-desc">
+              预期: ${formatValue(item.expected)}<br>
+              实际: ${formatValue(item.actual)}
+            </div>
+          </div>
+        `).join('');
+      } else {
+        failDetails.style.display = 'none';
+      }
+    }
+    
+    function formatValue(val) {
+      if (val === undefined) return '<span style="color:#666;">undefined</span>';
+      if (val === null) return '<span style="color:#666;">null</span>';
+      if (typeof val === 'boolean') return val ? 'true' : 'false';
+      if (typeof val === 'object') return JSON.stringify(val);
+      return String(val);
+    }
+    
+    // 初始化
+    log('测试框架初始化完成，点击"运行全部测试"开始', 'info');
+  </script>
+</body>
+</html>

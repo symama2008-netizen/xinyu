@@ -1,0 +1,86 @@
+{
+  "npcId": "laozhou",
+  "name": "老周",
+  "dialogueTree": [
+    {
+      "id": "laozhou_day3_first",
+      "day": 3,
+      "location": "lighthouse",
+      "condition": { "flag": null },
+      "lines": [
+        { "text": "你外婆早上来过了。说孙女今天要来，让我跟你说几句话。她站在这里跟我聊了半小时，全是你。", "speaker": "laozhou" },
+        { "text": "说你小时候的事，说你公司的事，说怕你不开心，又说觉得你比她想的有主意。翻来覆去的，最后问我——老周，你说晚晚能找到自己的路吗。", "speaker": "laozhou" },
+        { "text": "我说——她正在找。找本身就是路了。", "speaker": "laozhou" }
+      ],
+      "setFlag": "metLaozhou"
+    },
+    {
+      "id": "laozhou_day3_lighthouse",
+      "day": 3,
+      "location": "lighthouse",
+      "condition": { "flags": { "metLaozhou": true } },
+      "lines": [
+        { "text": "你外婆当年也站在这里。她说，从这里看出去，海和天没有边界，就像人生。", "speaker": "laozhou" },
+        { "text": "后来我问她——你找到自己的灯塔了吗。她指了指山下。说——就是那个小镇，那些人，还有我的晚晚。她在哪，灯塔就在哪。", "speaker": "laozhou" }
+      ],
+      "setFlag": "day3LighthouseTalked"
+    },
+    {
+      "id": "laozhou_day3_choice",
+      "day": 3,
+      "location": "lighthouse",
+      "condition": { "flags": { "day3LighthouseTalked": true } },
+      "lines": [
+        { "text": "你外婆让我告诉你——你不用找灯塔。你自己就是。你只是还没发现自己亮着。", "speaker": "laozhou" },
+        { "text": "刚才在塔下，你顺手帮我的那一下——那就是你的光。它亮得比你想的容易，也比你想的远。", "speaker": "laozhou" }
+      ],
+      "discovery": "laozhou_light"
+    },
+    {
+      "id": "laozhou_l3",
+      "day": 3,
+      "location": "lighthouse",
+      "lines": [
+        { "text": "下面的路，你自己选。不管你选哪条，灯塔都会为你亮着。不是因为它能替你找到答案。而是因为你值得被照亮。", "speaker": "laozhou" },
+        { "text": "你外婆说的——她这辈子，最得意的事，就是照亮了你。现在该你自己发光了。", "speaker": "laozhou" }
+      ],
+      "options": [
+        {
+          "text": "【闯一闯】我想再去闯一闯。",
+          "emotion": { "brave": 15 },
+          "lines": [
+            { "text": "好。灯塔的光会一直亮着。你带着它走，雾再大也不怕。", "speaker": "laozhou" }
+          ],
+          "triggerEnding": true,
+          "setFlag": "endingReturn"
+        },
+        {
+          "text": "【留下来】我想在这里待一段时间。",
+          "emotion": { "calm": 15 },
+          "lines": [
+            { "text": "好。灯塔的光日复一日。你留在这里，它也陪你。", "speaker": "laozhou" }
+          ],
+          "triggerEnding": true,
+          "setFlag": "endingStay"
+        },
+        {
+          "text": "【写下来】我想……写下来。",
+          "emotion": { "calm": 10, "brave": 10 },
+          "lines": [
+            { "text": "好。每个人都是一本书。迷茫只是其中一页。外婆写完了她的故事，你翻开自己的第一页。", "speaker": "laozhou" }
+          ],
+          "triggerEnding": true,
+          "setFlag": "endingDiaryWriting"
+        }
+      ]
+    },
+    {
+      "id": "laozhou_generic",
+      "day": 0,
+      "location": "lighthouse",
+      "lines": [
+        { "text": "灯塔的光，每天晚上都亮着。有人在找它。", "speaker": "laozhou" }
+      ]
+    }
+  ]
+}

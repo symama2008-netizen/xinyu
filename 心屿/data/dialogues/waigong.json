@@ -1,0 +1,85 @@
+{
+  "npcId": "waigong",
+  "name": "外公",
+  "dialogueTree": [
+    {
+      "id": "waigong_day1_evening",
+      "day": 1,
+      "location": "oldhouse",
+      "condition": { "timeOfDay": ["evening", "night"], "flags": { "day1Arrived": true } },
+      "lines": [
+        { "text": "晚晚，你看，今天的豆子。外公剥的，没让你外婆动手。", "speaker": "waigong" }
+      ],
+      "options": [
+        {
+          "text": "外公剥豆子剥了一下午？",
+          "emotion": { "calm": 3 },
+          "lines": [
+            { "text": "豆子本来就疼。剥快了，它疼。", "speaker": "waigong" }
+          ]
+        },
+        {
+          "text": "谢谢外公",
+          "emotion": { "calm": 5 },
+          "lines": [
+            { "text": "谢什么。外公就是剥豆子。你外婆煮汤。", "speaker": "waigong" }
+          ]
+        }
+      ],
+      "setFlag": "day1WaigongTalked"
+    },
+    {
+      "id": "waigong_day2_album",
+      "day": 2,
+      "location": "oldhouse",
+      "condition": { "flags": { "day2AlbumTalked": true } },
+      "lines": [
+        { "text": "你看你外婆年轻时多凶，这照片是我偷拍的，她追了我两条街。", "speaker": "waigong" }
+      ],
+      "options": [
+        {
+          "text": "那外公跑什么？",
+          "emotion": { "calm": 3, "brave": 3 },
+          "lines": [
+            { "text": "不跑怎么让她追？", "speaker": "waigong" }
+          ]
+        },
+        {
+          "text": "外婆年轻时候什么样？",
+          "emotion": { "calm": 5 },
+          "discovery": "waipo_story",
+          "lines": [
+            { "text": "你外婆年轻时候……算了，不说了。让她自己跟你说。", "speaker": "waigong" },
+            { "text": "（后来外婆在一旁补了一句：抱着你的时候，心就满了。满了就不怕了。）", "speaker": "narrator" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "waigong_day3_morning",
+      "day": 3,
+      "location": "oldhouse",
+      "lines": [
+        { "text": "钥匙拿到了？去灯塔看看。老周在那等你。", "speaker": "waigong" }
+      ]
+    },
+    {
+      "id": "waigong_outdoor_fallback",
+      "day": 0,
+      "location": "outdoor",
+      "lines": [
+        { "text": "晚晚回来啦。路上累不累？你外婆在屋里煮汤呢，算着时间炖的。快进去吧。", "speaker": "waigong" },
+        { "text": "（低头继续剥豆子）", "speaker": "narrator" },
+        { "text": "对了，进门别忘带门。外头风大。", "speaker": "waigong" }
+      ]
+    },
+    {
+      "id": "waigong_generic",
+      "day": 0,
+      "location": "oldhouse",
+      "lines": [
+        { "text": "剥豆子不能急。急了豆子疼。", "speaker": "waigong" }
+      ]
+    }
+  ]
+}

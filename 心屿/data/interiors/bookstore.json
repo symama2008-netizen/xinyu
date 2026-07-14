@@ -1,0 +1,35 @@
+{
+  "id": "bookstore",
+  "name": "无名书店",
+  "room": {
+    "widthRatio": 0.65,
+    "heightRatio": 0.7
+  },
+  "background": {
+    "wall": "#7A7A7A",
+    "floor": "#8B4513",
+    "door": {
+      "x": 390,
+      "y": 504,
+      "w": 51,
+      "h": 38,
+      "color": "#FFD54F"
+    }
+  },
+  "furniture": [
+    { "id": "bookshelf_left", "name": "通顶书架", "x": 40, "y": 50, "w": 70, "h": 320, "color": "#8B4513", "sortable": true },
+    { "id": "bookshelf_right", "name": "通顶书架", "x": 720, "y": 50, "w": 70, "h": 320, "color": "#8B4513", "sortable": true },
+    { "id": "reading_sofa", "name": "阅读沙发", "x": 300, "y": 370, "w": 160, "h": 60, "color": "#800000", "sortable": true },
+    { "id": "cashier_desk", "name": "收银台", "x": 540, "y": 310, "w": 130, "h": 55, "color": "#8B4513", "sortable": true },
+    { "id": "ladder", "name": "梯子", "x": 140, "y": 200, "w": 35, "h": 160, "color": "#A0522D", "sortable": true }
+  ],
+  "decorations": [
+    { "id": "green_window", "name": "墨绿窗框", "x": 340, "y": 40, "w": 110, "h": 90, "color": "#87CEEB", "frameColor": "#2E5C2E", "sortable": false },
+    { "id": "bookstore_sign", "name": "静", "x": 160, "y": 100, "w": 90, "h": 30, "color": "#FFF8DC", "textColor": "#4A4A4A", "sortable": false },
+    { "id": "old_map", "name": "旧地图", "x": 590, "y": 40, "w": 90, "h": 70, "color": "#DEB887", "sortable": false }
+  ],
+  "items": [
+    { "id": "bookmark", "name": "旧书签", "icon": "🔖", "x": 60, "y": 230, "w": 15, "h": 10, "interaction": "collect", "glow": true, "unlockDay": 1, "discoveryId": "bookmark_found" },
+    { "id": "stamp", "name": "邮票", "icon": "📨", "x": 500, "y": 220, "w": 15, "h": 12, "interaction": "collect", "glow": true, "unlockDay": 2, "discoveryId": "stamp_found" }
+  ]
+}
